@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Modify the LibreBarcode EAN13 font for better UPC display.
+Modify the LibreBarcode 128 font for better display.
 
 The goal is to make the font 150% taller with the following proportions:
 - Use descender for 100% (full current height below the baseline)
@@ -12,8 +12,8 @@ from fontTools.pens.t2CharStringPen import T2CharStringPen
 import os
 
 # Load the font
-input_font = 'fonts/LibreBarcodeEAN13Text-Regular.ttf'
-output_font = 'fonts/LibreBarcodeEAN13Text-UPC.ttf'
+input_font = 'fonts/LibreBarcode128-Regular.ttf'
+output_font = 'fonts/LibreBarcode128-Modified.ttf'
 
 print(f"Loading font: {input_font}")
 font = TTFont(input_font)
@@ -111,11 +111,11 @@ head.yMax = new_ascent
 name_table = font['name']
 for record in name_table.names:
     if record.nameID == 1:  # Font Family name
-        record.string = "Libre Barcode EAN13 Text UPC"
+        record.string = "Libre Barcode 128 Modified"
     elif record.nameID == 4:  # Full font name
-        record.string = "Libre Barcode EAN13 Text UPC Regular"
+        record.string = "Libre Barcode 128 Modified Regular"
     elif record.nameID == 6:  # PostScript name
-        record.string = "LibreBarcodeEAN13Text-UPC"
+        record.string = "LibreBarcode128-Modified"
 
 print(f"\nSaving modified font: {output_font}")
 font.save(output_font)

@@ -4,7 +4,7 @@
 from fontTools.ttLib import TTFont
 
 # Load the font
-font = TTFont('fonts/LibreBarcodeEAN13Text-Regular.ttf')
+font = TTFont('fonts/LibreBarcode128-Regular.ttf')
 
 # Get the head table (font header)
 head = font['head']
