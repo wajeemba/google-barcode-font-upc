@@ -73,8 +73,12 @@ for glyph_name in glyph_names:
 
     glyph = glyf_table[glyph_name]
 
+    # Skip composite glyphs - they reference other glyphs and will be scaled automatically
+    if glyph.isComposite():
+        continue
+
     # Skip empty glyphs
-    if not glyph.isComposite() and glyph.numberOfContours == 0:
+    if glyph.numberOfContours == 0:
         continue
 
     # Create a transformation matrix for vertical scaling

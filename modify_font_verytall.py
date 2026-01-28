@@ -67,8 +67,12 @@ for glyph_name in glyph_names:
 
     glyph = glyf_table[glyph_name]
 
+    # Skip composite glyphs - they reference other glyphs and will be scaled automatically
+    if glyph.isComposite():
+        continue
+
     # Skip empty glyphs
-    if not glyph.isComposite() and glyph.numberOfContours == 0:
+    if glyph.numberOfContours == 0:
         continue
 
     # Create a transformation matrix for vertical scaling
@@ -84,7 +88,16 @@ for glyph_name in glyph_names:
     glyph_set[glyph_name].draw(transform_pen)
 
     # Replace the glyph
-    glyf_table[glyph_name] = tt_pen.glyph()
+    new_glyph = tt_pen.glyph()
+    glyf_table[glyph_name] = new_glyph
+
+# Recalculate bounds for all glyphs
+print("\nRecalculating glyph bounds...")
+for glyph_name in glyph_names:
+    if glyph_name in glyf_table:
+        glyph = glyf_table[glyph_name]
+        if hasattr(glyph, 'recalcBounds'):
+            glyph.recalcBounds(glyf_table)
 
 # Update font metrics in OS/2 table
 os2.sTypoAscender = new_ascent
@@ -96,9 +109,22 @@ os2.usWinDescent = abs(new_descent)
 hhea.ascent = new_ascent
 hhea.descent = new_descent
 
-# Update bounding box in head table if needed
-head.yMin = new_descent
-head.yMax = new_ascent
+# Manually recalculate bounding box from actual glyphs
+print("\nRecalculating bounding box from glyphs...")
+min_y = 0
+max_y = 0
+for glyph_name in glyph_names:
+    if glyph_name in glyf_table:
+        glyph = glyf_table[glyph_name]
+        if hasattr(glyph, 'yMin') and hasattr(glyph, 'yMax'):
+            if glyph.yMin < min_y:
+                min_y = glyph.yMin
+            if glyph.yMax > max_y:
+                max_y = glyph.yMax
+
+head.yMin = min_y
+head.yMax = max_y
+print(f"Calculated bounding box: yMin={min_y}, yMax={max_y}")
 
 # Update font name to indicate it's Very Tall
 name_table = font['name']
