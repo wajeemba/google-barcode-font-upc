@@ -1,40 +1,52 @@
 # Google Barcode Font - Libre Barcode 128 Modified
 
-This repository contains a modified version of the Libre Barcode 128 font optimized for better barcode display.
+This repository contains modified versions of the Libre Barcode 128 font optimized for better barcode display.
 
 ## Overview
 
-The original Libre Barcode 128 font has been modified to be taller, making barcodes more readable and properly proportioned. This is particularly useful when barcodes need to be displayed with better vertical spacing and visibility.
+The original Libre Barcode 128 font has been modified into two taller variants, making barcodes more readable and properly proportioned. This is particularly useful when barcodes need to be displayed with better vertical spacing and visibility, especially in applications like Excel where vertical stretching isn't available.
 
-## Modifications
+## Font Variants
 
-The modified font (`LibreBarcode128-Tall.ttf`) has the following changes:
+### Tall Version (`LibreBarcode128-Tall.ttf`)
+- **Vertical scaling**: Glyphs scaled to 150% of original height
+- **Descender expansion**: Uses full original height (1000 units) below baseline
+- **Ascender expansion**: Adds 50% of original height (500 units) above baseline
+- **Total height increase**: From 1,000 to 2,100 units (210% of original)
 
-- **Vertical scaling**: Glyphs are scaled to 150% of their original height
-- **Descender expansion**: Uses the full original height (1000 units) below the baseline for better spacing
-- **Ascender expansion**: Adds 50% of the original height (500 units) above the current ascent
-- **Total height increase**: From 1000 units to 2,100 units (210% of original)
+### Very Tall Version (`LibreBarcode128-VeryTall.ttf`)
+- **Vertical scaling**: Glyphs scaled to 300% of original height (2x of Tall)
+- **Descender**: Same as Tall version (-1000 units)
+- **Ascender expansion**: Adds significant height above baseline
+- **Total height increase**: From 1,000 to 4,200 units (420% of original)
+- **Use case**: Perfect for very long UPCs in Excel where uniform height is needed
 
 ### Metrics Comparison
 
-| Metric | Original | Modified |
-|--------|----------|----------|
-| Ascent | 600 | 1,100 |
-| Descent | -400 | -1,000 |
-| Total Height | 1,000 | 2,100 |
+| Metric | Original | Tall | Very Tall |
+|--------|----------|------|-----------|
+| Ascent | 600 | 1,100 | 3,200 |
+| Descent | -400 | -1,000 | -1,000 |
+| Total Height | 1,000 | 2,100 | 4,200 |
+| Height vs Original | 1x | 2.1x | 4.2x |
 
 ## Files
 
 - `fonts/LibreBarcode128-Regular.ttf` - Original font from Google Fonts
-- `fonts/LibreBarcode128-Tall.ttf` - Modified font optimized for better display
-- `modify_font.py` - Python script used to create the modified font
+- `fonts/LibreBarcode128-Tall.ttf` - Tall variant (2.1x height)
+- `fonts/LibreBarcode128-VeryTall.ttf` - Very Tall variant (4.2x height)
+- `modify_font.py` - Python script to create the Tall variant
+- `modify_font_verytall.py` - Python script to create the Very Tall variant
 - `examine_font.py` - Utility script to examine font metrics
 
 ## Usage
 
-Install the modified font (`LibreBarcode128-Tall.ttf`) on your system and use it in your applications where you need to display Code 128 barcodes with better vertical proportions.
+Install one or both modified fonts on your system:
 
-The font supports Code 128 barcode encoding (no text variant).
+- **Tall variant** (`LibreBarcode128-Tall.ttf`): Good for most applications needing better vertical proportions
+- **Very Tall variant** (`LibreBarcode128-VeryTall.ttf`): Perfect for Excel or other applications where very long barcodes need consistent height
+
+Both fonts support Code 128 barcode encoding (no text variant).
 
 ## License
 
@@ -49,11 +61,18 @@ See [LICENSE.md](LICENSE.md) for the full license text.
 
 ## Building
 
-To regenerate the modified font, ensure you have Python 3 and fonttools installed:
+To regenerate the modified fonts, ensure you have Python 3 and fonttools installed:
 
 ```bash
 pip install fonttools
+
+# Generate Tall variant
 python3 modify_font.py
+
+# Generate Very Tall variant
+python3 modify_font_verytall.py
 ```
 
-The script will create `fonts/LibreBarcode128-Tall.ttf` from the original font file.
+The scripts will create:
+- `fonts/LibreBarcode128-Tall.ttf` - From `modify_font.py`
+- `fonts/LibreBarcode128-VeryTall.ttf` - From `modify_font_verytall.py`
