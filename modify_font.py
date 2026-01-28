@@ -13,7 +13,7 @@ import os
 
 # Load the font
 input_font = 'fonts/LibreBarcode128-Regular.ttf'
-output_font = 'fonts/LibreBarcode128-Modified.ttf'
+output_font = 'fonts/LibreBarcode128-Tall.ttf'
 
 print(f"Loading font: {input_font}")
 font = TTFont(input_font)
@@ -111,11 +111,11 @@ head.yMax = new_ascent
 name_table = font['name']
 for record in name_table.names:
     if record.nameID == 1:  # Font Family name
-        record.string = "Libre Barcode 128 Modified"
+        record.string = "Libre Barcode 128 Tall"
     elif record.nameID == 4:  # Full font name
-        record.string = "Libre Barcode 128 Modified Regular"
+        record.string = "Libre Barcode 128 Tall Regular"
     elif record.nameID == 6:  # PostScript name
-        record.string = "LibreBarcode128-Modified"
+        record.string = "LibreBarcode128-Tall"
 
 print(f"\nSaving modified font: {output_font}")
 font.save(output_font)

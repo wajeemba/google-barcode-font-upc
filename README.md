@@ -8,7 +8,7 @@ The original Libre Barcode 128 font has been modified to be taller, making barco
 
 ## Modifications
 
-The modified font (`LibreBarcode128-Modified.ttf`) has the following changes:
+The modified font (`LibreBarcode128-Tall.ttf`) has the following changes:
 
 - **Vertical scaling**: Glyphs are scaled to 150% of their original height
 - **Descender expansion**: Uses the full original height (1000 units) below the baseline for better spacing
@@ -26,13 +26,13 @@ The modified font (`LibreBarcode128-Modified.ttf`) has the following changes:
 ## Files
 
 - `fonts/LibreBarcode128-Regular.ttf` - Original font from Google Fonts
-- `fonts/LibreBarcode128-Modified.ttf` - Modified font optimized for better display
+- `fonts/LibreBarcode128-Tall.ttf` - Modified font optimized for better display
 - `modify_font.py` - Python script used to create the modified font
 - `examine_font.py` - Utility script to examine font metrics
 
 ## Usage
 
-Install the modified font (`LibreBarcode128-Modified.ttf`) on your system and use it in your applications where you need to display Code 128 barcodes with better vertical proportions.
+Install the modified font (`LibreBarcode128-Tall.ttf`) on your system and use it in your applications where you need to display Code 128 barcodes with better vertical proportions.
 
 The font supports Code 128 barcode encoding (no text variant).
 
@@ -56,4 +56,4 @@ pip install fonttools
 python3 modify_font.py
 ```
 
-The script will create `fonts/LibreBarcode128-Modified.ttf` from the original font file.
+The script will create `fonts/LibreBarcode128-Tall.ttf` from the original font file.
