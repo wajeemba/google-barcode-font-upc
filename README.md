@@ -36,7 +36,7 @@ The original Libre Barcode 128 font has been modified into two taller variants, 
 
 - `fonts/LibreBarcode128-Regular.ttf` - Original font from Google Fonts
 - `fonts/LibreBarcode128-Tall.ttf` - Tall variant (2.1x height)
-- `fonts/LibreBarcode128-VeryTall.ttf` - Very Tall variant (4.2x height)
+- `fonts/LibreBarcode128-VeryTall.ttf` - Very Tall variant (3.46x height, 1.65x of Tall)
 - `modify_font.py` - Python script to create the Tall variant
 - `modify_font_verytall.py` - Python script to create the Very Tall variant
 - `examine_font.py` - Utility script to examine font metrics
