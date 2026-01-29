@@ -2,8 +2,8 @@
 """
 Modify the LibreBarcode 128 font for even taller display.
 
-Creates a "Very Tall" version that's twice the height of the Tall variant.
-Keeps the descender the same and adds all extra height above.
+Creates a "Very Tall" version that's 1.65x the height of the Tall variant.
+Uses the same ascender/descender proportions as the Tall variant.
 """
 
 from fontTools.ttLib import TTFont
@@ -34,23 +34,46 @@ print(f"  Descent: {current_descent}")
 print(f"  Total height: {current_total}")
 
 # Calculate new metrics for Very Tall version
+# Tall version scale: 1.5x from original
+# Very Tall should be 1.65x of Tall scale = 1.5 * 1.65 = 2.475x from original
+
+tall_scale = 1.5
+very_tall_multiplier = 1.65
+scale_factor = tall_scale * very_tall_multiplier  # 2.475x
+
+# Expected glyph height after scaling
+expected_glyph_height = int(590 * scale_factor)  # ~1460
+
 # Tall version has: Ascent 1100, Descent -1000, Total 2100
-# Very Tall should be 2x of Tall = 4200 total
-# Keep descent at -1000 (same as Tall)
-# Add all extra height to ascent
+# Use same proportions: 52.38% ascent, 47.62% descent
+tall_total = 2100
+tall_ascent = 1100
+tall_descent = 1000
 
-new_descent = -1000  # Same as Tall version
-new_total = 4200  # 2x of Tall version (2100 * 2)
-new_ascent = new_total - abs(new_descent)  # 3200
+ascent_ratio = tall_ascent / tall_total  # 0.5238
+descent_ratio = tall_descent / tall_total  # 0.4762
 
-print(f"\nNew metrics (Very Tall):")
+# Calculate Very Tall total height as 1.65x of Tall
+new_total = int(tall_total * very_tall_multiplier)  # 3465
+
+# Apply same proportions
+new_ascent = int(new_total * ascent_ratio)  # 1815
+new_descent = -int(new_total * descent_ratio)  # -1650
+
+print(f"\nTall metrics for reference:")
+print(f"  Scale: {tall_scale}x from original")
+print(f"  Ascent: {tall_ascent}")
+print(f"  Descent: -{tall_descent}")
+print(f"  Total height: {tall_total}")
+
+print(f"\nNew metrics (Very Tall - {very_tall_multiplier}x of Tall):")
+print(f"  Scale: {scale_factor}x from original ({very_tall_multiplier}x of Tall's {tall_scale}x)")
+print(f"  Expected glyph height: ~{expected_glyph_height}")
 print(f"  Ascent: {new_ascent}")
 print(f"  Descent: {new_descent}")
 print(f"  Total height: {new_total}")
-print(f"  Height vs Original: {new_total/current_total:.1f}x")
-
-# Scale glyphs by 3x vertically (1.5x for Tall * 2 = 3x)
-scale_factor = 3.0
+print(f"  Height vs Original: {new_total/current_total:.2f}x")
+print(f"  Height vs Tall: {new_total/tall_total:.2f}x")
 
 # Get the glyph set
 glyf_table = font['glyf']

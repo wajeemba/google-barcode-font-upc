@@ -15,20 +15,22 @@ The original Libre Barcode 128 font has been modified into two taller variants, 
 - **Total height increase**: From 1,000 to 2,100 units (210% of original)
 
 ### Very Tall Version (`LibreBarcode128-VeryTall.ttf`)
-- **Vertical scaling**: Glyphs scaled to 300% of original height (2x of Tall)
-- **Descender**: Same as Tall version (-1000 units)
-- **Ascender expansion**: Adds significant height above baseline
-- **Total height increase**: From 1,000 to 4,200 units (420% of original)
+- **Vertical scaling**: Glyphs scaled to 346% of original height (1.65x of Tall)
+- **Proportions**: Uses same ascender/descender ratio as Tall version
+- **Ascender**: 1,815 units (52.4% of total height)
+- **Descender**: -1,650 units (47.6% of total height)
+- **Total height increase**: From 1,000 to 3,465 units (346% of original)
 - **Use case**: Perfect for very long UPCs in Excel where uniform height is needed
 
 ### Metrics Comparison
 
 | Metric | Original | Tall | Very Tall |
 |--------|----------|------|-----------|
-| Ascent | 600 | 1,100 | 3,200 |
-| Descent | -400 | -1,000 | -1,000 |
-| Total Height | 1,000 | 2,100 | 4,200 |
-| Height vs Original | 1x | 2.1x | 4.2x |
+| Ascent | 600 | 1,100 | 1,815 |
+| Descent | -400 | -1,000 | -1,650 |
+| Total Height | 1,000 | 2,100 | 3,465 |
+| Height vs Original | 1x | 2.1x | 3.46x |
+| Height vs Tall | - | - | 1.65x |
 
 ## Files
 
